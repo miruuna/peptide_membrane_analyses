@@ -170,12 +170,10 @@ def calculate_apl(path):
     for res in unique_resnames:
         apl_per_res_dict[res] = all_apl[u.select_atoms(f"resname {res}").residues.resindices]
 
-
     lipid_data = all_apl[u.select_atoms(f"resname POPG").residues.resindices]
     df_lipid= pd.DataFrame.from_records(lipid_data)
     df_lipid.index = range(1, memb_lipids+1)
     df_lipid.columns=range(1,np.size(df_lipid,1)+1)
-
     
     return df_lipid
 
@@ -192,7 +190,7 @@ def calc_and_write_to_file(path, membrane_type, results_directory):
         print(f"{peptide_name} --- DONE")
         all_lipid[peptide_name] = df_lipid
     else:
-        print("NOO")
+        print("Oops something went wrong")
 
 
 if __name__=="__main__":
